@@ -1,0 +1,7 @@
+{
+  "name": "enron",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}
