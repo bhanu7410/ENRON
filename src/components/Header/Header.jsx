@@ -4,15 +4,12 @@ import reactImg from "./../../assets/react-core-concepts.png";
 //Importing Styles
 import "./Header.css";
 
-import { memo } from "react";
+export default function Header() {
+	const reactDescription = ["Fundamental", "Crucial", "Core"];
 
-const reactDescription = ["Fundamental", "Crucial", "Core"];
-
-function genRandomInt(max) {
-	return Math.floor(Math.random() * max);
-}
-
-function Header() {
+	function genRandomInt(max) {
+		return Math.floor(Math.random() * max);
+	}
 	const description = reactDescription[genRandomInt(reactDescription.length)];
 
 	return (
@@ -26,5 +23,3 @@ function Header() {
 		</header>
 	);
 }
-
-export default memo(Header);
