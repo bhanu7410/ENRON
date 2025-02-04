@@ -30,6 +30,7 @@ function App() {
 				<h2>Time to get started!</h2>
 			</main>
 			<Content />
+			hix
 		</div>
 	);
 }
