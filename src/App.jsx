@@ -1,3 +1,4 @@
+import Content from "./Components/Content.jsx";
 import reactImg from "./assets/react-core-concepts.png";
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
@@ -28,6 +29,7 @@ function App() {
 			<main>
 				<h2>Time to get started!</h2>
 			</main>
+			<Content />
 		</div>
 	);
 }
