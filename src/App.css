@@ -54,10 +54,23 @@ main {
 }
 
 #core-concepts {
+	/* margin: 0 10rem; */
 	padding: 2rem;
 	border-radius: 6px;
 	background-color: #140524;
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+	/* display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center; */
+}
+
+#core-concepts h2 {
+	text-align: center;
+	font-family: "Roboto Condensed", sans-serif;
+	margin: 0 0 1.5rem 0;
+	color: #a18aba;
 }
 
 main h2 {

@@ -1,4 +1,4 @@
-import Content from "./Components/Content.jsx";
+import CoreConsept from "./Components/CoreConsept.jsx";
 import reactImg from "./assets/react-core-concepts.png";
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
@@ -26,11 +26,13 @@ function App() {
 	return (
 		<div>
 			<Header />
+
 			<main>
-				<h2>Time to get started!</h2>
+				<section id="core-concepts">
+					<h2>Core Concepts</h2>
+					<CoreConsept />
+				</section>
 			</main>
-			<Content />
-			hix
 		</div>
 	);
 }
