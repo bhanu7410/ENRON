@@ -1,4 +1,4 @@
-import CoreConsept from "./Components/CoreConsept.jsx";
+import CoreConcept from "./Components/CoreConcept.jsx";
 import reactImg from "./assets/react-core-concepts.png";
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
@@ -30,7 +30,7 @@ function App() {
 			<main>
 				<section id="core-concepts">
 					<h2>Core Concepts</h2>
-					<CoreConsept />
+					<CoreConcept />
 				</section>
 			</main>
 		</div>
