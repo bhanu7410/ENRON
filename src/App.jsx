@@ -1,5 +1,6 @@
 import CoreConcept from "./Components/CoreConcept.jsx";
 import reactImg from "./assets/react-core-concepts.png";
+import CoreInormation from "./Components/CoreInormation.jsx";
 
 const reactDescriptions = ["Fundamental", "Crucial", "Core"];
 
@@ -31,6 +32,10 @@ function App() {
 				<section id="core-concepts">
 					<h2>Core Concepts</h2>
 					<CoreConcept />
+				</section>
+				<section id="examples">
+					<h2>Examples</h2>
+					<CoreInormation />
 				</section>
 			</main>
 		</div>

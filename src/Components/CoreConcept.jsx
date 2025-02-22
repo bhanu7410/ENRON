@@ -1,5 +1,4 @@
-import PropTypes from "prop-types"; // Import PropTypes
-import { CORE_CONCEPTS, EXAMPLES } from "../assets/data-with-examples";
+import { CORE_CONCEPTS } from "../assets/data-with-examples";
 
 function Concept(props) {
 	return (
@@ -11,16 +10,7 @@ function Concept(props) {
 	);
 }
 
-// Define prop-types for the Concept component
-Concept.propTypes = {
-	imgSrc: PropTypes.string.isRequired, // imgSrc should be a string and is required
-	title: PropTypes.string.isRequired, // title should be a string and is required
-	description: PropTypes.string.isRequired, // description should be a string and is required
-};
-
 function CoreConcept() {
-	console.log("core concepts from the data", CORE_CONCEPTS);
-	console.log("examples from data", EXAMPLES);
 	return (
 		<ul>
 			{CORE_CONCEPTS.map((concept) => (
