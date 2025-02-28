@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function Player({ name, symbol, isActivePlayer }) {
+export default function Player({ name, symbol, isActivePlayer, hangleChange }) {
 	const [isEditing, setIsEditing] = useState(false);
 	const [playerName, setPlayerName] = useState(name);
 
@@ -16,7 +16,6 @@ export default function Player({ name, symbol, isActivePlayer }) {
 						type="text"
 						placeholder={name}
 						required
-						value={playerName}
 						onChange={handleChange}
 					/>
 				) : (
@@ -24,7 +23,12 @@ export default function Player({ name, symbol, isActivePlayer }) {
 				)}
 				<span className="player-symbol">{symbol}</span>
 			</span>
-			<button onClick={() => setIsEditing((edit) => !edit)}>
+			<button
+				onClick={() => {
+					hangleChange(symbol, playerName);
+					setIsEditing((edit) => !edit);
+				}}
+			>
 				{isEditing ? "Save" : "Edit"}
 			</button>
 		</li>
