@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import primepng from "./assets/investment-calculator-logo.png";
 
 import Input from "./components/Input";
-import { calculateInvestmentResults } from "./util/investment";
+import { calculateInvestmentResults, formatter } from "./util/investment";
+
 function Header() {
 	return (
 		<>
@@ -19,15 +20,17 @@ function App() {
 	const [annualInvestment, setAnnualInvestment] = useState(0);
 	const [expectedReturn, setExpectedReturn] = useState(0);
 	const [duration, setDuration] = useState(0);
+	let investedCapital = initialInvestment;
+	let totalInterest = 0;
 
-	const annualData = calculateInvestmentResults(
-		initialInvestment,
-		annualInvestment,
-		expectedReturn,
-		duration
-	);
-	console.log(initialInvestment);
+	const annualData = calculateInvestmentResults({
+		initialInvestment: initialInvestment,
+		annualInvestment: annualInvestment,
+		expectedReturn: expectedReturn,
+		duration: duration,
+	});
 
+	console.log(annualData);
 	return (
 		<>
 			<Header />;
@@ -43,7 +46,32 @@ function App() {
 				<Input lable="Expected Return" setValue={setExpectedReturn} />{" "}
 				<Input lable="Duration" setValue={setDuration} />
 			</div>
-			{annualData}
+			<table id="result">
+				<thead>
+					<tr>
+						<th>Year</th>
+						<th>Investment Value</th>
+						<th>Interest(Year)</th>
+						<th>Total Interest</th>
+						<th>Invested Capital</th>
+					</tr>
+				</thead>
+				<tbody>
+					{annualData.map((data) => {
+						totalInterest += data.interest;
+						investedCapital += annualInvestment;
+						return (
+							<tr key={data.year}>
+								<td>{data.year}</td>
+								<td>{formatter.format(data.valueEndOfYear)}</td>
+								<td>{formatter.format(data.interest)}</td>
+								<td>{formatter.format(totalInterest)}</td>
+								<td>{formatter.format(investedCapital)} </td>
+							</tr>
+						);
+					})}
+				</tbody>
+			</table>
 		</>
 	);
 }
