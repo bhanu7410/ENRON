@@ -46,32 +46,40 @@ function App() {
 				<Input lable="Expected Return" setValue={setExpectedReturn} />{" "}
 				<Input lable="Duration" setValue={setDuration} />
 			</div>
-			<table id="result">
-				<thead>
-					<tr>
-						<th>Year</th>
-						<th>Investment Value</th>
-						<th>Interest(Year)</th>
-						<th>Total Interest</th>
-						<th>Invested Capital</th>
-					</tr>
-				</thead>
-				<tbody>
-					{annualData.map((data) => {
-						totalInterest += data.interest;
-						investedCapital += annualInvestment;
-						return (
-							<tr key={data.year}>
-								<td>{data.year}</td>
-								<td>{formatter.format(data.valueEndOfYear)}</td>
-								<td>{formatter.format(data.interest)}</td>
-								<td>{formatter.format(totalInterest)}</td>
-								<td>{formatter.format(investedCapital)} </td>
-							</tr>
-						);
-					})}
-				</tbody>
-			</table>
+			{duration > 0 ? (
+				<table id="result">
+					<thead>
+						<tr>
+							<th>Year</th>
+							<th>Investment Value</th>
+							<th>Interest(Year)</th>
+							<th>Total Interest</th>
+							<th>Invested Capital</th>
+						</tr>
+					</thead>
+					<tbody>
+						{annualData.map((data) => {
+							totalInterest += data.interest;
+							investedCapital += annualInvestment;
+							return (
+								<tr key={data.year}>
+									<td>{data.year}</td>
+									<td>
+										{formatter.format(data.valueEndOfYear)}
+									</td>
+									<td>{formatter.format(data.interest)}</td>
+									<td>{formatter.format(totalInterest)}</td>
+									<td>
+										{formatter.format(investedCapital)}{" "}
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
+			) : (
+				<p className="center">Duration Should be Greater Than Zero</p>
+			)}
 		</>
 	);
 }
