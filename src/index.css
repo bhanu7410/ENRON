@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@layer components {
+	.custome_scrollbar {
+		scrollbar-color: #888 transparent;
+	}
+}
