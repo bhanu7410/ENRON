@@ -12,9 +12,6 @@ export default function Tasks({
 }) {
 	const [newTaskStatus, setNewTaskStatus] = useState(false);
 	const [newTaskDetails, setNewTaskDetails] = useState("");
-	const [taskArrayStatus, setTaskArrayStatus] = useState(
-		projectDetails[currentProjectId].tasks.map(() => false),
-	);
 
 	function handleNewTask() {
 		setNewTaskStatus((status) => !status);
@@ -32,7 +29,24 @@ export default function Tasks({
 			return newProjects;
 		});
 		setNewTaskDetails(null);
-		setTaskArrayStatus((taskArray) => [...taskArray, false]);
+	}
+
+	function handleDeleteTask(index) {
+		let newSetTasks = [...projectDetails[currentProjectId].tasks];
+		newSetTasks.splice(index, 1);
+		console.log(index, newSetTasks);
+		setProjectDetails((projectArray) => {
+			const newProjects = {
+				...projectArray,
+				[currentProjectId]: {
+					...projectArray[currentProjectId],
+					tasks: [...newSetTasks],
+					dateModified: getCurrentDateTime(),
+				},
+			};
+			return newProjects;
+		});
+		setNewTaskDetails(null);
 	}
 
 	function handleNewTaskEntry(target) {
@@ -49,7 +63,10 @@ export default function Tasks({
 					<div className="flex-auto text-xl text-left border-2 border-transparent rounded cursor-pointer hover:border-sky-400">
 						{index}.{task}
 					</div>
-					<button className="flex-none px-2 py-1 text-xl transition-all duration-100 ease-in rounded cursor-pointer hover:bg-red-400">
+					<button
+						onClick={() => handleDeleteTask(index)}
+						className="flex-none px-2 py-1 text-xl transition-all duration-100 ease-in rounded cursor-pointer hover:bg-red-400"
+					>
 						<img
 							className="w-6"
 							src={DeleteIconBlack}

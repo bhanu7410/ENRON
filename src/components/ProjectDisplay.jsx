@@ -111,9 +111,8 @@ export default function ProjectDisplay({
 							setProjectDetails={setProjectDetails}
 							currentProjectId={currentProjectId}
 						/>
-						{currentProject.markdown}
 					</div>
-					hello
+					{currentProject.markdown}
 				</div>
 			) : (
 				<div className="flex flex-col items-center justify-center h-screen gap-4 overflow-y-auto flex-5">

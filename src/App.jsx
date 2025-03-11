@@ -30,7 +30,7 @@ function App() {
 				[projectNo]: {
 					title: `New Project No.${projectNo}`,
 					dateModified: getCurrentDateTime(),
-					tasks: ["Example Task"],
+					tasks: [],
 					markdown: "",
 					dueDate: getCurrentDateTime(),
 					bgImage: tailwindRandomColorGen(),
