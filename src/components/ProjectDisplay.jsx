@@ -1,13 +1,13 @@
 import { useState } from "react";
 import png from "../assets/no-projects.png";
 
-import { getCurrentDateTime, getTimeDifference } from "../utils/dateTime";
+import { getCurrentDateTime } from "../utils/dateTime";
+import Tasks from "./Tasks";
 
 export default function ProjectDisplay({
 	projectDetails,
 	handleNewProject,
 	setProjectDetails,
-	handleDeleteProject,
 	selectedProject = null,
 }) {
 	let currentProjectId = selectedProject
@@ -36,6 +36,20 @@ export default function ProjectDisplay({
 		});
 	}
 
+	function handleDueDateChange(e) {
+		setProjectDetails((projectsArray) => {
+			const newProject = {
+				...projectsArray,
+				[currentProjectId]: {
+					...projectsArray[currentProjectId],
+					dueDate: e.target.value,
+					dateModified: getCurrentDateTime(),
+				},
+			};
+			return newProject;
+		});
+	}
+
 	return (
 		<>
 			{Object.keys(projectDetails).length ? (
@@ -47,7 +61,7 @@ export default function ProjectDisplay({
 							{titleStatus ? (
 								<input
 									autoFocus
-									className="border-violet-600"
+									className="border-2 rounded border-violet-500"
 									type="text"
 									placeholder={currentProject.title}
 									value={currentProject.title}
@@ -59,27 +73,47 @@ export default function ProjectDisplay({
 									}}
 								/>
 							) : (
-								<div onClick={handleTitleStatus}>
+								<div
+									className="border-2 border-transparent rounded cursor-pointer hover:border-sky-400"
+									onClick={handleTitleStatus}
+								>
 									{currentProject.title}
 								</div>
 							)}
 						</div>
-						<div>
-							<div>
-								{getTimeDifference(
-									getCurrentDateTime(),
-									currentProject.dateModified,
-								)}
+						<div className="flex flex-col pr-5">
+							<div className="flex justify-end flex-1">
+								<div>{currentProject.dateModified}</div>
+							</div>
+							<div className="flex items-end justify-end flex-1">
+								<div>
+									<span className="font-bold">Due Date</span>{" "}
+									:{" "}
+									<input
+										className="border-2 border-transparent rounded cursor-pointer hover:border-sky-400"
+										type="date"
+										name=""
+										id=""
+										onChange={handleDueDateChange}
+										value={currentProject.dueDate}
+									/>
+								</div>
 							</div>
 						</div>
 					</div>
-
-					<div className="flex flex-col flex-auto">
-						{currentProject.dateModified}
-						{currentProject.tasks}
+					<div className="flex flex-col flex-none py-4 mx-4 my-4 bg-stone-200">
+						<div className="pb-4 font-sans text-2xl font-bold underline">
+							Important Tasks
+						</div>
+						<Tasks
+							tasks={currentProject.tasks}
+							projectDetails={projectDetails}
+							setProjectDetails={setProjectDetails}
+							currentProjectId={currentProjectId}
+						/>
 						{currentProject.markdown}
-						{currentProject.dueDate}
 					</div>
+					hello
 				</div>
 			) : (
 				<div className="flex flex-col items-center justify-center h-screen gap-4 overflow-y-auto flex-5">

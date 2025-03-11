@@ -10,7 +10,11 @@ import { getCurrentDateTime } from "./utils/dateTime";
 
 function App() {
 	const [projectDetails, setProjectDetails] = useState({});
+	const [currentProjectId, setCurrentProjectId] = useState();
 
+	function handleNavigation(projectKey) {
+		setCurrentProjectId(() => projectKey);
+	}
 	function handleNewProject() {
 		let projectNo = Object.keys(projectDetails).length
 			? Number(
@@ -26,14 +30,15 @@ function App() {
 				[projectNo]: {
 					title: `New Project No.${projectNo}`,
 					dateModified: getCurrentDateTime(),
-					tasks: [],
+					tasks: ["Example Task"],
 					markdown: "",
-					dueDate: "",
+					dueDate: getCurrentDateTime(),
 					bgImage: tailwindRandomColorGen(),
 				},
 			};
 			return newProject;
 		});
+		setCurrentProjectId(() => projectNo);
 	}
 
 	function handleDeleteProject(key) {
@@ -44,6 +49,9 @@ function App() {
 			delete newProject[key];
 			return newProject;
 		});
+		if (key == currentProjectId) {
+			setCurrentProjectId(null);
+		}
 	}
 	return (
 		<div className="flex flex-wrap">
@@ -63,6 +71,8 @@ function App() {
 					<ProjectsNavBar
 						projectDetails={projectDetails}
 						handleDeleteProject={handleDeleteProject}
+						handleNavigation={handleNavigation}
+						selectedProject={currentProjectId}
 					/>
 				</div>
 				<div className="flex-1 text-white rounded h-30">user</div>
@@ -71,6 +81,7 @@ function App() {
 				projectDetails={projectDetails}
 				handleNewProject={handleNewProject}
 				setProjectDetails={setProjectDetails}
+				selectedProject={currentProjectId}
 				handleDeleteProject={handleDeleteProject}
 			/>
 		</div>

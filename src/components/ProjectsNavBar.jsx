@@ -3,18 +3,23 @@ import deleteIcon from "..//assets/DeleteIcon.png";
 export default function ProjectsNavBar({
 	projectDetails,
 	handleDeleteProject,
+	handleNavigation,
+	selectedProject,
 }) {
 	return Object.entries(projectDetails).map(([projectKey, value]) => (
 		<div
 			key={projectKey}
-			className="flex items-center m-1 text-white truncate group"
+			className={`group m-1 flex items-center truncate rounded-lg transition-all duration-75 ease-in ${projectKey === selectedProject ? "bg-stone-600" : undefined} text-white`}
 		>
-			<div className="flex-auto p-2 transition-all duration-75 ease-in rounded-lg cursor-pointer hover:bg-stone-700">
+			<div
+				onClick={() => handleNavigation(projectKey)}
+				className="flex-auto p-2 transition-all duration-75 ease-in cursor-pointer hover:bg-stone-700"
+			>
 				{value.title}
 			</div>
 			<div
 				onClick={() => handleDeleteProject(projectKey)}
-				className="w-10 opacity-0 cursor-pointer h-max rounded-xl group-hover:opacity-100 hover:bg-red-400"
+				className={`h-max w-10 cursor-pointer opacity-0 group-hover:opacity-100 ${projectKey === selectedProject ? "bg-red-400" : undefined} hover:bg-red-400`}
 			>
 				<img src={deleteIcon} alt="" />
 			</div>
