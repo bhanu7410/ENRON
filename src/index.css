@@ -5,3 +5,36 @@
 		scrollbar-color: #888 transparent;
 	}
 }
+
+@layer components {
+	h1 {
+		@apply text-4xl font-bold tracking-tight;
+	}
+	h2 {
+		@apply text-3xl font-bold tracking-tight;
+	}
+	h3 {
+		@apply text-2xl font-semibold tracking-normal;
+	}
+	h4 {
+		@apply text-xl font-semibold tracking-normal;
+	}
+	h5 {
+		@apply text-lg font-medium tracking-wide;
+	}
+	p {
+		@apply text-base leading-relaxed text-stone-800;
+	}
+
+	ul {
+		@apply list-inside list-disc space-y-2;
+	}
+
+	ol {
+		@apply list-inside list-decimal space-y-2;
+	}
+
+	li {
+		@apply text-base leading-relaxed text-stone-800;
+	}
+}

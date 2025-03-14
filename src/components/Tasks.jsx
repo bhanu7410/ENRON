@@ -19,10 +19,12 @@ export default function Tasks({
 
 	function handleNewTask() {
 		setNewTaskStatus((status) => false);
+
 		let newSetTasks = [...projectDetails[currentProjectId].tasks];
 		newSetTasks.push(
 			newTaskDetails ? newTaskDetails : "Random Task Created",
 		);
+
 		setProjectDetails((projectArray) => {
 			const newProjects = {
 				...projectArray,
@@ -101,7 +103,7 @@ export default function Tasks({
 						<input
 							type="text"
 							name={`task ${index}`}
-							className="w-full rounded-lg p-2 pl-4 text-xl"
+							className="w-full rounded-lg p-2 pl-4 text-xl outline-2 outline-violet-500"
 							onKeyDown={(e) => {
 								if (e.key === "Enter") {
 									handleEdittedTask(index);
@@ -147,7 +149,7 @@ export default function Tasks({
 						}
 					}}
 					onChange={(event) => handleNewTaskEntry(event.target.value)}
-					className="mb-2 w-full rounded-lg p-2 pl-4 text-xl outline-2 outline-blue-500"
+					className="mb-2 w-full rounded-lg p-2 pl-4 text-xl outline-2 outline-violet-500"
 					value={newTaskDetails ? newTaskDetails : ""}
 					ref={inputNewTaskRef}
 				/>
