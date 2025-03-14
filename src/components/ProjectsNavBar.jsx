@@ -5,15 +5,20 @@ export default function ProjectsNavBar({
 	handleDeleteProject,
 	handleNavigation,
 	selectedProject,
+	settings,
 }) {
 	return Object.entries(projectDetails).map(([projectKey, value]) => (
 		<div
 			key={projectKey}
-			className={`group m-1 flex items-center truncate rounded-lg transition-all duration-75 ease-in ${projectKey === selectedProject ? "bg-stone-600" : undefined} text-white`}
+			className={`group m-1 flex items-center truncate rounded-lg transition-all duration-75 ease-in ${projectKey === selectedProject ? "bg-stone-600" : undefined} ${
+				settings.projectTabColors && selectedProject != undefined
+					? projectDetails[projectKey].bgImage
+					: undefined
+			} text-white`}
 		>
 			<div
 				onClick={() => handleNavigation(projectKey)}
-				className="flex-auto p-2 transition-all duration-75 ease-in cursor-pointer hover:bg-stone-700"
+				className={`flex-auto cursor-pointer p-2 ${settings.projectTabColors && "text-black"} transition-all duration-75 ease-in hover:bg-stone-700`}
 			>
 				{value.title}
 			</div>
