@@ -115,6 +115,7 @@ export default function Tasks({
 							}}
 							onChange={(e) => setEditTaskDetails(e.target.value)}
 							autoFocus
+							defaultValue={task}
 						/>
 					) : (
 						<div

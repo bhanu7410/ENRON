@@ -39,8 +39,8 @@ export default function MarkdownDisplay({
 	}
 
 	return (
-		<>
-			<div className="mr-4 flex pl-5 text-sm text-stone-400">
+		<div>
+			<div className="mr-4 flex pl-2 text-sm text-stone-400">
 				<div className="flex-auto">
 					Please Save Before going to another project
 				</div>
@@ -48,7 +48,7 @@ export default function MarkdownDisplay({
 			</div>
 			{markdownStatus ? (
 				<div
-					className=""
+					className="mr-7 cursor-pointer rounded border-2 border-transparent pl-1 hover:border-sky-500"
 					onClick={() => {
 						setMarkdownStatus((e) => !e);
 						setTimeout(() => handleMarkdownInput(), 10);
@@ -62,7 +62,7 @@ export default function MarkdownDisplay({
 				<textarea
 					ref={markdownAreaRef}
 					onInput={handleMarkdownInput}
-					className="mx-7 rounded p-1 outline-2 outline-violet-500"
+					className="mx-7 rounded border-2 border-transparent p-1 outline-2 outline-violet-500"
 					name={`${currentProjectId} Project Markdown`}
 					placeholder="Markdown Can be used Here....... use Cmd-H/Ctrl-Y to save as markdown"
 					onKeyDown={(e) => {
@@ -78,6 +78,6 @@ export default function MarkdownDisplay({
 					autoFocus
 				/>
 			)}
-		</>
+		</div>
 	);
 }
