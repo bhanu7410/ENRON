@@ -54,9 +54,9 @@ export default function ProjectDisplay({
 	return (
 		<>
 			{Object.keys(projectDetails).length ? (
-				<div className="custome_scrollbar flex h-screen flex-5 flex-col overflow-y-auto [&>div]:pl-7">
+				<div className="custome_scrollbar flex h-screen flex-5 flex-col overflow-y-auto">
 					<div
-						className={`flex h-1/5 flex-none ${currentProject.bgImage} font-sans`}
+						className={`flex h-1/5 flex-none ${currentProject.bgImage} pl-7 font-sans`}
 					>
 						<div className="flex flex-auto items-end justify-start pb-6 text-5xl font-bold text-stone-950">
 							{titleStatus ? (
@@ -102,7 +102,7 @@ export default function ProjectDisplay({
 							</div>
 						</div>
 					</div>
-					<div className="mx-4 my-4 flex flex-none flex-col bg-stone-200 py-4">
+					<div className="mx-4 my-4 flex flex-none flex-col bg-stone-200 py-4 pl-7">
 						<div className="pb-4 font-sans text-2xl font-bold underline">
 							Important Tasks
 						</div>
