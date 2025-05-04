@@ -9,15 +9,14 @@ export default [
 	{
 		files: ["**/*.{js,jsx}"],
 		languageOptions: {
-			ecmaVersion: 2020,
+			ecmaVersion: "latest",
 			globals: globals.browser,
 			parserOptions: {
-				ecmaVersion: "latest",
 				ecmaFeatures: { jsx: true },
 				sourceType: "module",
 			},
 		},
-		settings: { react: { version: "18.3" } },
+		settings: { react: { version: "18.2" } },
 		plugins: {
 			react,
 			"react-hooks": reactHooks,
@@ -32,13 +31,12 @@ export default [
 			"react-refresh/only-export-components": [
 				"warn",
 				{ allowConstantExport: true },
-				{
-					plugins: ["react"],
-					rules: {
-						"react/prop-types": 0,
-					},
-				},
 			],
+			"no-unused-vars": [
+				"error",
+				{ vars: "all", args: "after-used", ignoreRestSiblings: true },
+			],
+			"react/prop-types": "off",
 		},
 	},
 ];
