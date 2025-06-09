@@ -13,7 +13,8 @@ const storedPlaces = storedIDs.map((id) =>
 );
 
 function App() {
-	const modal = useRef();
+	// const modal = useRef();
+	const [isOpen, setIsOpen] = useState(false);
 	const selectedPlace = useRef();
 	const [availablePlaces, setAvailablePlaces] = useState([]);
 	const [pickedPlaces, setPickedPlaces] = useState([...storedPlaces]);
@@ -31,12 +32,15 @@ function App() {
 	}, [pickedPlaces]);
 
 	function handleStartRemovePlace(id) {
-		modal.current.open();
+		// modal.current.open();
+		setIsOpen(true);
+
 		selectedPlace.current = id;
 	}
 
 	function handleStopRemovePlace() {
-		modal.current.close();
+		// modal.current.close();
+		setIsOpen(false);
 	}
 
 	function handleSelectPlace(id) {
@@ -64,7 +68,8 @@ function App() {
 				(place) => place.id !== selectedPlace.current,
 			),
 		);
-		modal.current.close();
+		// modal.current.close();
+		setIsOpen(false);
 
 		const storedIds =
 			JSON.parse(localStorage.getItem("selectedPlacess")) || [];
@@ -78,7 +83,7 @@ function App() {
 
 	return (
 		<>
-			<Modal ref={modal}>
+			<Modal open={isOpen}>
 				<DeleteConfirmation
 					onCancel={handleStopRemovePlace}
 					onConfirm={handleRemovePlace}
